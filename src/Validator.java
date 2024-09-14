@@ -2,7 +2,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 public class Validator {
-    public boolean isValidKey(int key) {
+    public static boolean isValidKey(int key) {
         if (key >= 1) {
             return true;
         }
@@ -10,7 +10,7 @@ public class Validator {
             return false;
         }
     }
-    public boolean isFileExists(Path path) {
+    public static boolean isFileExists(Path path) {
         return Files.exists(path);
     }
 }
