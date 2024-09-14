@@ -2,21 +2,24 @@ import java.util.*;
 
 public class Cipher {
 
-    int key;
+    private final List<Character> ALPHABET;
+    private int key;
 
-    // In the actualToEncryptedMap the keys are the actual characters, the values are the encrypted characters
-    HashMap<Character, Character> actualToEncryptedMap = new HashMap<Character, Character>();
-
-    // In the encryptedToActualMap the keys are the encrypted characters, the values are the actual characters
-    HashMap<Character, Character> encryptedToActualMap = new HashMap<Character, Character>();
 
     // For construction of a Cipher object an array with all the possible characters needs to be entered as an argument together with an integer that wil serve as the key for encryption
-    public Cipher(char[] charArray, int key) {
-
-        for (int i = 0; i < charArray.length; i++) {
-            actualToEncryptedMap.put(charArray[i], charArray[(i + key)%charArray.length]);
-            encryptedToActualMap.put(charArray[(i + key)%charArray.length], charArray[i]);
+    public Cipher(int key) {
+        this.key = key;
+        Character[] alphabetArray = new Character[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+                'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '.', ',', '?', '!', ' ', '-', '\'', '\"'};
+        ALPHABET = Arrays.asList(alphabetArray);
         }
+    public Cipher(int key, Character[] alphabetArray) {
+        this.key = key;
+        ALPHABET = Arrays.asList(alphabetArray);
+    }
+
+    public List<Character> getALPHABET() {
+        return ALPHABET;
     }
 
     public int getKey() {
@@ -26,4 +29,31 @@ public class Cipher {
     public void setKey(int key) {
         this.key = key;
     }
+
+    public String encrypt(String text) {
+        String encryptedText = "";
+        for (char c : text.toCharArray()) {
+            if (ALPHABET.contains(c)) {
+                encryptedText += ALPHABET.get((ALPHABET.indexOf(c) + key)%ALPHABET.size());
+            }
+            else {
+                encryptedText += c;
+            }
+        }
+        return encryptedText;
+    }
+
+    public String decrypt(String encryptedText) {
+        String decryptedText = "";
+        for (char c : encryptedText.toCharArray()) {
+            if (ALPHABET.contains(c)) {
+                decryptedText += ALPHABET.get((ALPHABET.indexOf(c) - key + ALPHABET.size()) % ALPHABET.size());
+            }
+            else {
+                decryptedText += c;
+            }
+        }
+        return decryptedText;
+    }
+
 }
