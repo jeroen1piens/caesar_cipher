@@ -5,10 +5,10 @@ public class Cipher {
     int key;
 
     // In the actualToEncryptedMap the keys are the actual characters, the values are the encrypted characters
-    Map<Character, Character> actualToEncryptedMap = new HashMap();
+    HashMap<Character, Character> actualToEncryptedMap = new HashMap<Character, Character>();
 
     // In the encryptedToActualMap the keys are the encrypted characters, the values are the actual characters
-    Map<Character, Character> encryptedToActualMap = new HashMap<>();
+    HashMap<Character, Character> encryptedToActualMap = new HashMap<Character, Character>();
 
     // For construction of a Cipher object an array with all the possible characters needs to be entered as an argument together with an integer that wil serve as the key for encryption
     public Cipher(char[] charArray, int key) {
