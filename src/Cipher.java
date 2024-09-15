@@ -43,6 +43,7 @@ public class Cipher {
     public String decrypt(String encryptedText) {
         String decryptedText = "";
         for (char c : encryptedText.toCharArray()) {
+            c = Character.toLowerCase(c);
             if (alphabet.contains(c)) {
                 decryptedText += alphabet.get((alphabet.indexOf(c) - key + alphabet.size()) % alphabet.size());
             }
