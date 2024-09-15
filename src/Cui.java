@@ -25,6 +25,7 @@ public class Cui {
                 case "1" -> encrypt();
                 case "2" -> decrypt();
                 case "3" -> BruteForcer.bruteForce();
+                case "4" -> StatisticalAnalyser.executeStatisticalAnalysis();
                 case "0" -> System.exit(0);
                 default -> System.out.println("The entered value is not an option. Please enter a value from the menu.");
 
