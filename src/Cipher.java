@@ -1,23 +1,21 @@
 import java.util.*;
 
 public class Cipher {
-
-    private final List<Character> ALPHABET;
+    private static Character[] alphabetArray = new Character[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
+            'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '.', ',', '?', '!', ' ', '-', '\'', '\"'};
+    private static List<Character> alphabet = Arrays.asList(alphabetArray);
     private int key;
 
     public Cipher(int key) {
         this.key = key;
-        Character[] alphabetArray = new Character[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
-                'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '.', ',', '?', '!', ' ', '-', '\'', '\"'};
-        ALPHABET = Arrays.asList(alphabetArray);
         }
     public Cipher(int key, Character[] alphabetArray) {
         this.key = key;
-        ALPHABET = Arrays.asList(alphabetArray);
+        alphabet = Arrays.asList(alphabetArray);
     }
 
-    public List<Character> getALPHABET() {
-        return ALPHABET;
+    public static List<Character> getAlphabet() {
+        return alphabet;
     }
 
     public int getKey() {
@@ -32,8 +30,8 @@ public class Cipher {
         String encryptedText = "";
         for (char c : text.toCharArray()) {
             c = Character.toLowerCase(c);
-            if (ALPHABET.contains(c)) {
-                encryptedText += ALPHABET.get((ALPHABET.indexOf(c) + key)%ALPHABET.size());
+            if (alphabet.contains(c)) {
+                encryptedText += alphabet.get((alphabet.indexOf(c) + key)% alphabet.size());
             }
             else {
                 encryptedText += c;
@@ -45,8 +43,8 @@ public class Cipher {
     public String decrypt(String encryptedText) {
         String decryptedText = "";
         for (char c : encryptedText.toCharArray()) {
-            if (ALPHABET.contains(c)) {
-                decryptedText += ALPHABET.get((ALPHABET.indexOf(c) - key + ALPHABET.size()) % ALPHABET.size());
+            if (alphabet.contains(c)) {
+                decryptedText += alphabet.get((alphabet.indexOf(c) - key + alphabet.size()) % alphabet.size());
             }
             else {
                 decryptedText += c;
