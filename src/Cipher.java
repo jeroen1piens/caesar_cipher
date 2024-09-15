@@ -5,8 +5,6 @@ public class Cipher {
     private final List<Character> ALPHABET;
     private int key;
 
-
-    // For construction of a Cipher object an array with all the possible characters needs to be entered as an argument together with an integer that wil serve as the key for encryption
     public Cipher(int key) {
         this.key = key;
         Character[] alphabetArray = new Character[] {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n',
@@ -33,6 +31,7 @@ public class Cipher {
     public String encrypt(String text) {
         String encryptedText = "";
         for (char c : text.toCharArray()) {
+            c = Character.toLowerCase(c);
             if (ALPHABET.contains(c)) {
                 encryptedText += ALPHABET.get((ALPHABET.indexOf(c) + key)%ALPHABET.size());
             }

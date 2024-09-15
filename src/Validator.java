@@ -10,7 +10,8 @@ public class Validator {
             return false;
         }
     }
-    public static boolean isFileExists(Path path) {
+    public static boolean isFileExists(String filePath) {
+        Path path = Path.of(filePath);
         return Files.exists(path);
     }
 }
