@@ -15,7 +15,7 @@ public class StatisticalAnalyser {
 
     public static void executeStatisticalAnalysis() {
         System.out.println("A valid filepath to an encrypted .txt file to perform a statistical analysis on for assessing the correct key needs to be entered.\n");
-        String encryptedText = FileManager.getTextFromFile();
+        String encryptedText = FileManager.readFile(FileManager.askInputFilePath());
         encryptedFilePath = FileManager.getInputFilePath();
         String exampleText = getExampleText();
         exampleWordSet = getExampleWordSet(exampleText);
@@ -46,12 +46,8 @@ public class StatisticalAnalyser {
     private static String getExampleText() {
         String exampleText;
         System.out.println("A valid filepath to a .txt file with an example text needs to be entered.\n");
-        exampleText = FileManager.getTextFromFile();
+        exampleText = FileManager.readFile(FileManager.askInputFilePath());
         return exampleText;
-    }
-    private static void setExampleTextFilePath(Path exampleTextFilePath) {
-        System.out.println("A valid filepath to a .txt file with an example text needs to be entered.\n");
-        StatisticalAnalyser.exampleTextFilePath = Path.of(FileManager.getTextFromFile());
     }
 
     private static HashSet<String> getExampleWordSet(String exampleText) {
@@ -102,5 +98,4 @@ public class StatisticalAnalyser {
         String fileName = strArray[0];
         return fileName;
     }
-
 }

@@ -7,7 +7,7 @@ public class BruteForcer {
     private static int startKey = 1;
     public static void bruteForce() {
         System.out.println("A valid filepath to a .txt file to brute force needs to be entered.\n");
-        String encryptedText = FileManager.getTextFromFile();
+        String encryptedText = FileManager.readFile(FileManager.askInputFilePath());
         inputFilePath = FileManager.getInputFilePath();
         int key = startKey;
         Cipher cipher = new Cipher(key);
@@ -16,7 +16,7 @@ public class BruteForcer {
             String decryptedText = cipher.decrypt(encryptedText);
             String outputFilePath = inputFilePath.getParent().toString() + "\\" + getFileName(inputFilePath)  +
                     "_bruteforce_with_key_" + key + ".txt";
-            FileManager.saveTextToFile(decryptedText, outputFilePath);
+            FileManager.writeFile(decryptedText, outputFilePath);
             key++;
         }
     }

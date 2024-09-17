@@ -37,25 +37,25 @@ public class Cui {
         System.out.println("Which number do you want to use for encryption? Write a whole number >= 1 and < " + Cipher.getAlphabet().size() + " click on Enter:\n");
         int key = askKey();
         System.out.println("A valid filepath to a .txt file to be encrypted needs to be entered.\n");
-        String originalText = FileManager.getTextFromFile();
+        String originalText = FileManager.readFile(FileManager.askInputFilePath());
         cipher = new Cipher(key);
         String encryptedText = cipher.encrypt(originalText);
         System.out.println("The encrypted text will be saved in a .txt file.\n");
-        FileManager.saveTextToFile(encryptedText);
+        FileManager.writeFile(encryptedText, FileManager.askOutputFilePath());
     }
 
     public static void decrypt() {
         System.out.println("Which number do you want to use for decryption? Write a whole number >= 1 and < " + + Cipher.getAlphabet().size() + " click on Enter:\n");
         int key = askKey();
         System.out.println("A valid filepath to the .txt file to be decrypted needs to be entered.\n");
-        String encryptedText = FileManager.getTextFromFile();
+        String encryptedText = FileManager.readFile(FileManager.askInputFilePath());
         cipher = new Cipher(key);
         String decryptedText = cipher.decrypt(encryptedText);
         System.out.println("The decrypted text needs to be saved in a .txt file.\n");
-        FileManager.saveTextToFile(decryptedText);
+        FileManager.writeFile(decryptedText, FileManager.askOutputFilePath());
     }
 
-    public static int askKey() {
+    private static int askKey() {
         int key;
         String keyInput;
         while (true) {

@@ -1,4 +1,5 @@
 import java.nio.file.Files;
+import java.nio.file.InvalidPathException;
 import java.nio.file.Path;
 import java.util.Scanner;
 
@@ -13,17 +14,21 @@ public class Validator {
         if (key < 1) {
             System.out.println("The entered key cannot be smaller than 1!");
             return false;
-        }
-        else if (key >= cipher.getAlphabet().size()) {
+        } else if (key >= cipher.getAlphabet().size()) {
             System.out.println("The entered key cannot be equal or bigger than the size of the used alphabet. Size used alphabet: " + cipher.getAlphabet().size());
             return false;
-        }
-        else {
+        } else {
             return true;
         }
     }
+
     public static boolean isFileExists(String filePath) {
-        Path path = Path.of(filePath);
-        return Files.exists(path);
+        Path path;
+        try {
+            path = Path.of(filePath);
+        } catch (InvalidPathException e) {
+            return false;
+        }
+        return Files.isRegularFile(path);
     }
 }
